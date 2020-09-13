@@ -1,15 +1,29 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Recipe from '../components/recipe'
-import { getAllrecipes } from '../lib/api'
+import { getAllRecipes, getNutrientForAllRecipes } from '../lib/api'
 
 export default function Home({recipes}) {
+
+  
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Olofsbaljor</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div>
+        <h1> Välkommen till Olofs baljor</h1>
+        <p> Detta är en sida innehållande mina favorit baljväxtrecept</p>
+      </div>
+      <h2>Baljor</h2>
+      <ul>
+      { recipes.length > 0 ? recipes.map(
+        r => (
+            <li> <a href={"#" + r.fields.title}>{r.fields.title}</a></li>
+        )
+      ): null }
+      </ul>
       { recipes.length > 0 ? recipes.map(
         r => (
           <div>
@@ -22,10 +36,19 @@ export default function Home({recipes}) {
 )}
 
 export async function getStaticProps() {
-  let recipes = await getAllrecipes()
+  let recipes = await getAllRecipes()
   recipes = recipes.items
-  console.log('recipes', recipes);
+  // console.log('recipes', recipes);
+  /* const ingredients = recipes[0].fields.ingredientsRt
+  console.log('Product: ', ingredients.content[0].content[0].content[0].content[1]);
+  console.log('value: ', ingredients.content[0].content[0].content[0].content[1].content[0].value);
+  const id = ingredients.content[0].content[0].content[0].content[1].data.target.fields.id
+  console.log('Id: ', id); */
   
+
+  const nutrientsPerRecipe  = await getNutrientForAllRecipes(recipes)
+  console.log('nutrients: ', nutrientsPerRecipe )
+
   return {
     props: {recipes}
   }
