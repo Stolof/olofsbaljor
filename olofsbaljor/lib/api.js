@@ -5,9 +5,14 @@ const client = createClient({
   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
 })
 
-async function getRecipies() {
+async function getrecipes() {
     const recipe = await client.getEntry('55yRqa9P6hQZgaR6kEzgwh')
     return parseForm(recipe)
+  }
+
+async function getAllrecipes() {
+    const recipes = await client.getEntries()
+    return recipes
   }
 
 function parseForm(recipe) {
@@ -18,5 +23,6 @@ function parseForm(recipe) {
 
 
 module.exports = {
-    getRecipies: getRecipies,
+    getrecipes: getrecipes,
+    getAllrecipes: getAllrecipes
 }

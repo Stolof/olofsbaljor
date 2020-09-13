@@ -1,26 +1,32 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Recipe from '../components/recipe'
-import { getRecipies } from '../lib/api'
+import { getAllrecipes } from '../lib/api'
 
-export default function Home({recipies}) {
-  // this.props = recipies
-  console.log('HOME Cookie', recipies.recipe.titel);
+export default function Home({recipes}) {
   return (
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Recipe recipe={recipies.recipe}></Recipe>
+      { recipes.length > 0 ? recipes.map(
+        r => (
+          <div>
+          <Recipe recipe={r.fields}></Recipe>
+          </div>
+        )
+      ): null
+      }
       </div>
 )}
 
 export async function getStaticProps() {
-  const recipies = await getRecipies()
-  console.log('recipies', recipies);
+  let recipes = await getAllrecipes()
+  recipes = recipes.items
+  console.log('recipes', recipes);
   
   return {
-    props: {recipies}
+    props: {recipes}
   }
 }
