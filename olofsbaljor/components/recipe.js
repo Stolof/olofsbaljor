@@ -1,6 +1,7 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { getEntry } from '../lib/api'
 import NutrientTable from '../components/NutrientTable'
+import EnergyPieChart from '../components/EnergyPieChart'
 export default function Recipe(props){
     const title = props.recipe.title
 
@@ -12,8 +13,8 @@ export default function Recipe(props){
         const energyNutrients = {
             "Calories" : nutrients['Energi (kcal)'],
             "Protein" : nutrients['Protein'],
-            "carbohodydrates" : nutrients['Kolhydrater'],
-            "fat" : nutrients['Fett']
+            "Carbohodydrates" : nutrients['Kolhydrater'],
+            "Fat" : nutrients['Fett']
         }
         return  energyNutrients
     }
@@ -31,6 +32,8 @@ export default function Recipe(props){
                 <p>
                     {instructionsDisplay}
                 </p>
+                <NutrientTable recipeTitle={title} nutrients={getEnergyNutrients(props.recipe.nutrients)} />
+                <EnergyPieChart title={title + "id"} energyNutrients={getEnergyNutrients(props.recipe.nutrients)}/>
                 <NutrientTable recipeTitle={title} nutrients={props.recipe.nutrients} />
             </div>
         </div>
