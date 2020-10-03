@@ -2,10 +2,12 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import NutrientTable from '../components/NutrientTable'
 import EnergyPieChart from '../components/EnergyPieChart'
 import nutrientStyle from '../styles/Nutrients.module.css'
+import { useState } from 'react'
 
 export default function Recipe(props){
-    const title = props.recipe.title
+    const [showNutrients, setShowNutrients] = useState(props.recipe.showNutrients ? true : false)
 
+    const title = props.recipe.title
     const description = documentToReactComponents(props.recipe.descriptionRt) 
     const ingredientsDisplay = documentToReactComponents(props.recipe.ingredientsRt)
     const instructionsDisplay = documentToReactComponents(props.recipe.instructionsRt)
@@ -54,10 +56,14 @@ export default function Recipe(props){
                 <NutrientTable recipeTitle={title} nutrients={getEnergyNutrients(props.recipe.nutrients)} />
                 <EnergyPieChart title={title + "id"} energyNutrients={getEnergyNutrients(props.recipe.nutrients)}/>
             </div>
+            <a onClick={() => setShowNutrients(!showNutrients)}>Visa fler näringsämnen</a>
+            { showNutrients ? 
       <div className={nutrientStyle.container}>
                 <NutrientTable recipeTitle={title} nutrients={firstHalfOfNutrients} />
                 <NutrientTable recipeTitle={title} nutrients={secondHalfOfNutrients} />
                 </div>
+            
+        : null }
         </div>
     )
 }

@@ -47,6 +47,7 @@ export async function getStaticProps() {
   const nutrientsPerRecipe = await getNutrientForAllRecipes(recipes)
   for (const recipe of recipes) {
     recipe.fields["nutrients"] = nutrientsPerRecipe[recipe.fields.title]
+    recipe.fields["showNutrients"] = false
   }
   // console.log('Recipes', recipes )
   // const result = await Promise.all(Object.values(nutrientsPerRecipe))
