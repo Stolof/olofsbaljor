@@ -1,7 +1,6 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import NutrientTable from '../components/NutrientTable'
 import EnergyPieChart from '../components/EnergyPieChart'
-import indexStyle from '../styles/Index.module.css'
 import nutrientStyle from '../styles/Nutrients.module.css'
 
 export default function Recipe(props){

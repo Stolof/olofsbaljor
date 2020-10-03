@@ -3,13 +3,6 @@ import nutrientStyle from '../styles/Nutrients.module.css'
 
 export default function EnergyPieChart(props) {
 
-
-    console.log(
-    ['Proiten', props.energyNutrients['Protein']*4],
-    ['Kolhydrater', props.energyNutrients['Carbohodydrates']*4],
-    ['Fett', props.energyNutrients['Fat']*9])
-    
-
     GoogleCharts.load(drawChart);
 
     // Draw the chart and set the chart values
