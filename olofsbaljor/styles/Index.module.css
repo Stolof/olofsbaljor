@@ -1,0 +1,27 @@
+
+.container {
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    height: auto;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin: 5%;
+}
+.list {
+    position: relative;
+    display: flex;
+    list-style-type: none;
+}
+.listItem {
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    width: 30%;
+    height: auto;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin: 5%;
+}
+.listItem a {
+    padding-left: 5%;
+    padding-right: 5%;
+    margin: 5%;
+}

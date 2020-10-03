@@ -1,16 +1,18 @@
    
-import  NutrientTableEntry from './NutrientTableEntry'
+import nutrientStyle from '../styles/Nutrients.module.css'
+
+import NutrientTableEntry from './NutrientTableEntry'
    export default function NutrientTable(props) {
      return (
-         <div>
+         <div className={nutrientStyle.table}>
              <div>
-                 <h2> Näringsinnehåll: {props.recipeTitle}</h2>
+                 <h3> Näringsinnehåll: {props.recipeTitle}</h3>
              </div>
              <div>
-                 <div>
+                 <div className={nutrientStyle.tableRowHeading}>
                      <div>Näringsämne</div>
-                     <div>Mängd</div>
-                 </div>
+                     <div className={nutrientStyle.tableRowAmount}>Mängd</div>
+                 </div >
                  { 
                        Object.keys(props.nutrients).map( (key) => 
                          <NutrientTableEntry name={key} value={props.nutrients[key]} />

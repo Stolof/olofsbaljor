@@ -1,9 +1,10 @@
 
+import nutrientStyle from '../styles/Nutrients.module.css'
    export default function NutrientTableEntry(props) {
      return (
-         <div>
+          <div className={nutrientStyle.tableRow}>
              <div>{props.name}</div>
-             <div>{props.value}</div>
+             <div className={nutrientStyle.tableRowAmount}>{props.value}</div>
          </div>
      )
    }

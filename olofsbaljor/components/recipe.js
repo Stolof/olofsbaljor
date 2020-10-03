@@ -1,7 +1,9 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { getEntry } from '../lib/api'
 import NutrientTable from '../components/NutrientTable'
 import EnergyPieChart from '../components/EnergyPieChart'
+import indexStyle from '../styles/Index.module.css'
+import nutrientStyle from '../styles/Nutrients.module.css'
+
 export default function Recipe(props){
     const title = props.recipe.title
 
@@ -20,22 +22,24 @@ export default function Recipe(props){
     }
 
     return (
-        <div id={title}>
+        <div >
             <h1>{title}</h1>
             <h2>{description}</h2>
-            <div>
+      <div className={nutrientStyle.container}>
                 <h3>Ingredients</h3>
                 {ingredientsDisplay}
             </div>
-            <div>
+      <div className={nutrientStyle.container}>
                 <h3> How to</h3>
                 <p>
                     {instructionsDisplay}
                 </p>
+                </div>
+      <div className={nutrientStyle.container}>
                 <NutrientTable recipeTitle={title} nutrients={getEnergyNutrients(props.recipe.nutrients)} />
                 <EnergyPieChart title={title + "id"} energyNutrients={getEnergyNutrients(props.recipe.nutrients)}/>
-                <NutrientTable recipeTitle={title} nutrients={props.recipe.nutrients} />
             </div>
+                <NutrientTable recipeTitle={title} nutrients={props.recipe.nutrients} />
         </div>
     )
 }
