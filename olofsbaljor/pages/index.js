@@ -14,7 +14,7 @@ export default function Home({recipes}) {
       </Head>
       <div>
         <h1> Välkommen till Olofs baljor</h1>
-        <p> Detta är en sida innehållande mina favorit baljväxtrecept</p>
+        <p> Detta är en sida innehållande mina favoritbaljväxtrecept</p>
       </div>
       <h2>Baljor</h2>
       <ul>
@@ -46,8 +46,9 @@ export async function getStaticProps() {
   console.log('Id: ', id); */
   
 
-  const nutrientsPerRecipe  = await getNutrientForAllRecipes(recipes)
-  console.log('nutrients: ', nutrientsPerRecipe )
+  const nutrientsPerRecipe = await getNutrientForAllRecipes(recipes)
+  console.log('Value in recipe: ', nutrientsPerRecipe )
+  // const result = await Promise.all(Object.values(nutrientsPerRecipe))
 
   return {
     props: {recipes}

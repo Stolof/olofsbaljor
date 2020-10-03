@@ -23,47 +23,38 @@ function parseForm(recipe) {
 
 async function getNutrientForAllRecipes(recipes){
   let nutrientsPerRecipe = {}
-  recipes.forEach(recipe => {
+   for (const recipe of recipes) {
     const ingredients = recipe.fields.ingredients
-    getNutrientsForRecipe(ingredients).then((recipeNutrien) => {
-      console.log('Nutrient: ', recipeNutrien);
-      
-      nutrientsPerRecipe[recipe.fields.title] = recipeNutrien
-    })
-  });
+    const recipeNutrients = await getNutrientsForRecipe(ingredients)
+    nutrientsPerRecipe[recipe.fields.title] = recipeNutrients
+  };
   return nutrientsPerRecipe
 }
 
-const getNutrientsForRecipe = async function(ingredients){
+async function getNutrientsForRecipe(ingredients) {
   let recipeNutrients = {}
-  ingredients.forEach(i => {
-    const productId = i.fields.id
-    // const productName = i.fields.name
-    getNutrientsForProduct(productId).then((productNutrients) => {
-      console.log('productNutrient:' );
-      productNutrients.forEach(nutrient => {
-        console.log('Nutrient: ', nutrient.name);
-        
-        recipeNutrients[nutrient.name] = nutrient.value
-      });
-    })
-  });
+  for (const ingredient of ingredients){
+    const productId = ingredient.fields.id
+    const productNutrients = await getNutrientsForProduct(productId) 
+      for (const nutrient of productNutrients ) {
+        if(nutrient.name in recipeNutrients) {
+          recipeNutrients[nutrient.name] = nutrient.value + recipeNutrients[nutrient.name]
+        } else {
+          recipeNutrients[nutrient.name] = nutrient.value 
+        }
+      };
+  }
   return recipeNutrients
 }
 
 async function getNutrientsForProduct(productId){
   const livsmedelkollenAPI = 'https://api.livsmedelkollen.se/foodstuffs/'
-  try {
-    const res = await fetch(livsmedelkollenAPI + "881",{
+    const res = await fetch(livsmedelkollenAPI + productId,{
       method: 'GET',
       headers: {'Content-Type': 'application/json'}
     })
     const nutrients = await res.json()
-    return nutrients
-  } catch (err) {
-    console.log('ERROR: ', err);
-  }
-  return 'Hej'
+    return await nutrients
 }
 
 
