@@ -8,7 +8,23 @@ export default function Recipe(props){
 
     const description = documentToReactComponents(props.recipe.descriptionRt) 
     const ingredientsDisplay = documentToReactComponents(props.recipe.ingredientsRt)
-    const instructionsDisplay = documentToReactComponents(props.recipe.instructionsRt)     
+    const instructionsDisplay = documentToReactComponents(props.recipe.instructionsRt)
+
+    const nutrients = props.recipe.nutrients
+    let firstHalfOfNutrients = {} 
+    let secondHalfOfNutrients = {}
+    let secondHalf = false
+
+    for (const nutrient in nutrients) {
+        if (nutrient === 'Alkohol'){
+            secondHalf = true
+        }
+        if (!secondHalf){
+            firstHalfOfNutrients[nutrient] = nutrients[nutrient]
+        } else{
+            secondHalfOfNutrients[nutrient] = nutrients[nutrient]
+        }
+    }
 
     function getEnergyNutrients(nutrients) {
         const energyNutrients = {
@@ -21,7 +37,7 @@ export default function Recipe(props){
     }
 
     return (
-        <div >
+        <div id={title}>
             <h1>{title}</h1>
             <h2>{description}</h2>
       <div className={nutrientStyle.container}>
@@ -38,7 +54,10 @@ export default function Recipe(props){
                 <NutrientTable recipeTitle={title} nutrients={getEnergyNutrients(props.recipe.nutrients)} />
                 <EnergyPieChart title={title + "id"} energyNutrients={getEnergyNutrients(props.recipe.nutrients)}/>
             </div>
-                <NutrientTable recipeTitle={title} nutrients={props.recipe.nutrients} />
+      <div className={nutrientStyle.container}>
+                <NutrientTable recipeTitle={title} nutrients={firstHalfOfNutrients} />
+                <NutrientTable recipeTitle={title} nutrients={secondHalfOfNutrients} />
+                </div>
         </div>
     )
 }
