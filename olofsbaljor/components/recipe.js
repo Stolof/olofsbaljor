@@ -1,8 +1,11 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { useState } from 'react'
+
 import NutrientTable from '../components/NutrientTable'
 import EnergyPieChart from '../components/EnergyPieChart'
+
 import nutrientStyle from '../styles/Nutrients.module.css'
-import { useState } from 'react'
+import recipeStyle from '../styles/Recipe.module.css'
 
 export default function Recipe(props){
     const [showNutrients, setShowNutrients] = useState(props.recipe.showNutrients ? true : false)
@@ -40,8 +43,13 @@ export default function Recipe(props){
 
     return (
         <div id={title}>
-            <h1>{title}</h1>
-            <h2>{description}</h2>
+            <div className={recipeStyle.introduction}>
+                <div>
+                    <h1>{title}</h1>
+                    <p>{description}</p>
+                </div>
+                <img className={recipeStyle.recipeImg } src="not-found.png"></img>
+            </div>
       <div className={nutrientStyle.container}>
                 <h3>Ingredients</h3>
                 {ingredientsDisplay}
@@ -56,11 +64,11 @@ export default function Recipe(props){
                 <NutrientTable recipeTitle={title} nutrients={getEnergyNutrients(props.recipe.nutrients)} />
                 <EnergyPieChart title={title + "id"} energyNutrients={getEnergyNutrients(props.recipe.nutrients)}/>
             </div>
-            <a onClick={() => setShowNutrients(!showNutrients)}>Visa fler näringsämnen</a>
+            <a onClick={() => setShowNutrients(!showNutrients)}> { showNutrients ? <p> Visa mindre</p> : <p>Visa fler näringsämnen</p>}</a>
             { showNutrients ? 
       <div className={nutrientStyle.container}>
                 <NutrientTable recipeTitle={title} nutrients={firstHalfOfNutrients} />
-                <NutrientTable recipeTitle={title} nutrients={secondHalfOfNutrients} />
+                <NutrientTable nutrients={secondHalfOfNutrients} />
                 </div>
             
         : null }

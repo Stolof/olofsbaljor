@@ -7,21 +7,40 @@
     padding-right: 5%;
     margin: 5%;
 }
+
 .list {
     position: relative;
     display: flex;
     list-style-type: none;
 }
+
 .listItem {
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
     width: 30%;
     height: auto;
-    padding-left: 5%;
-    padding-right: 5%;
-    margin: 5%;
+    min-height: 260px;
+    margin: auto;
+    display: flex;
 }
+
+.listItem:hover {
+    background: whitesmoke;
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+}
+
 .listItem a {
-    padding-left: 5%;
-    padding-right: 5%;
     margin: 5%;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.image {
+    width: 95%;
+    height: auto;
+    min-height: 220px;
+    min-width: 200px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    margin: auto;
+    padding: 5%;
 }

@@ -5,8 +5,9 @@ import NutrientTableEntry from './NutrientTableEntry'
    export default function NutrientTable(props) {
      return (
          <div className={nutrientStyle.table}>
-             <div>
-                 <h3> Näringsinnehåll: {props.recipeTitle}</h3>
+             <div>{props.recipeTitle ?
+                 <h3>Näringsinnehåll: {props.recipeTitle} </h3>
+: <h3> </h3>}
              </div>
              <div>
                  <div className={nutrientStyle.tableRowHeading}>

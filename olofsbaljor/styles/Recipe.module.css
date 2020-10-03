@@ -1,0 +1,16 @@
+
+.introduction {
+    display: flex;
+} 
+
+.introduction div{
+    width: 50%;
+} 
+.recipeImg {
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    width: 50%;
+    height: auto;
+    padding: 2%;
+    margin: 5%;
+    min-height: 300px;
+}

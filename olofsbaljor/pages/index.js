@@ -23,7 +23,12 @@ export default function Home(props) {
         <ul className={indexStyle.list}>
         { props.recipes.length > 0 ? props.recipes.map(
           r => (
-              <li className={indexStyle.listItem}> <a href={"#" + r.fields.title}>{r.fields.title}</a></li>
+              <li className={indexStyle.listItem} href={"#" + r.fields.title}>
+                <a href={"#" + r.fields.title}>
+                  {r.fields.title}
+                  <img className={indexStyle.image} src="not-found.png"></img>
+                </a>
+              </li>
           )
         ): null }
         </ul>
