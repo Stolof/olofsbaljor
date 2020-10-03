@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import indexStyle from '../styles/Index.module.css'
-import Recipe from '../components/Recipe'
+import Recipe from '../components/Recipe.js'
 import { getAllRecipes, getNutrientForAllRecipes } from '../lib/api'
 
 export default function Home(props) {
