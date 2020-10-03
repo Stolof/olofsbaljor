@@ -1,23 +1,12 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { getEntry } from '../lib/api'
+import NutrientTable from '../components/NutrientTable'
+export default function Recipe(props){
+    const title = props.recipe.title
 
-export default function Recipe({recipe}){
-    const title = recipe.title
-
-    const description = documentToReactComponents(recipe.descriptionRt) 
-    const ingredientsDisplay = documentToReactComponents(recipe.ingredientsRt)
-    const instructionsDisplay = documentToReactComponents(recipe.instructionsRt)     
-
-
-    /* console.log('value: ', recipe.ingredientsRt.content[0].content[0].content[0].content[1].content[0].value);
-    console.log('XXXXXX: ', recipe.ingredientsRt.content[0].content[1].content[0].content);
-    console.log('XXXXXX: ', recipe.ingredientsRt.content[0].content[0].content[0].content);
-
-    
-    console.log('Titel: ', title);
-    console.log('Description: ', description);
-    console.log('ingredients: ', ingredients);
-    console.log('instructions: ', instructions); */
+    const description = documentToReactComponents(props.recipe.descriptionRt) 
+    const ingredientsDisplay = documentToReactComponents(props.recipe.ingredientsRt)
+    const instructionsDisplay = documentToReactComponents(props.recipe.instructionsRt)     
 
     return (
         <div id={title}>
@@ -28,10 +17,11 @@ export default function Recipe({recipe}){
                 {ingredientsDisplay}
             </div>
             <div>
-            <h3> How to</h3>
-            <p>
-                {instructionsDisplay}
-            </p>
+                <h3> How to</h3>
+                <p>
+                    {instructionsDisplay}
+                </p>
+                <NutrientTable recipeTitle={title} nutrients={props.recipe.nutrients} />
             </div>
         </div>
     )
