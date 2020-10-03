@@ -8,6 +8,16 @@ export default function Recipe(props){
     const ingredientsDisplay = documentToReactComponents(props.recipe.ingredientsRt)
     const instructionsDisplay = documentToReactComponents(props.recipe.instructionsRt)     
 
+    function getEnergyNutrients(nutrients) {
+        const energyNutrients = {
+            "Calories" : nutrients['Energi (kcal)'],
+            "Protein" : nutrients['Protein'],
+            "carbohodydrates" : nutrients['Kolhydrater'],
+            "fat" : nutrients['Fett']
+        }
+        return  energyNutrients
+    }
+
     return (
         <div id={title}>
             <h1>{title}</h1>
