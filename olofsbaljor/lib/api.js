@@ -25,22 +25,25 @@ async function getNutrientForAllRecipes(recipes){
   let nutrientsPerRecipe = {}
    for (const recipe of recipes) {
     const ingredients = recipe.fields.ingredients
-    const recipeNutrients = await getNutrientsForRecipe(ingredients)
+    const amounts = recipe.fields.amount
+    const recipeNutrients = await getNutrientsForRecipe(ingredients, amounts)
     nutrientsPerRecipe[recipe.fields.title] = recipeNutrients
   };
   return nutrientsPerRecipe
 }
 
-async function getNutrientsForRecipe(ingredients) {
+async function getNutrientsForRecipe(ingredients, amounts) {
   let recipeNutrients = {}
+  let amountIndex = 0
   for (const ingredient of ingredients){
     const productId = ingredient.fields.id
+    const amount = ( amounts[amountIndex].fields.gram / 100 )
     const productNutrients = await getNutrientsForProduct(productId) 
       for (const nutrient of productNutrients ) {
         if(nutrient.name in recipeNutrients) {
-          recipeNutrients[nutrient.name] = nutrient.value + recipeNutrients[nutrient.name]
+          recipeNutrients[nutrient.name] = nutrient.value * amount + recipeNutrients[nutrient.name]
         } else {
-          recipeNutrients[nutrient.name] = nutrient.value 
+          recipeNutrients[nutrient.name] = nutrient.value * amount
         }
       };
   }
