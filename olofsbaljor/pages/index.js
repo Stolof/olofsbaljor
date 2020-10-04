@@ -26,7 +26,11 @@ export default function Home(props) {
               <li className={indexStyle.listItem} href={"#" + r.fields.title}>
                 <a href={"#" + r.fields.title}>
                   {r.fields.title}
+                  { r.fields.resultImage ? 
+                  <img className={indexStyle.image} src={ 'https:' + r.fields.resultImage.fields.file.url}></img>
+                  :
                   <img className={indexStyle.image} src="not-found.png"></img>
+                }
                 </a>
               </li>
           )
@@ -54,7 +58,7 @@ export async function getStaticProps() {
     recipe.fields["nutrients"] = nutrientsPerRecipe[recipe.fields.title]
     recipe.fields["showNutrients"] = false
   }
-  // console.log('Recipes', recipes )
+  console.log('Recipes', recipes )
   // const result = await Promise.all(Object.values(nutrientsPerRecipe))
 
   return {

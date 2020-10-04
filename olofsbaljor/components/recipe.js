@@ -14,7 +14,7 @@ export default function Recipe(props){
     const description = documentToReactComponents(props.recipe.descriptionRt) 
     const ingredientsDisplay = documentToReactComponents(props.recipe.ingredientsRt)
     const instructionsDisplay = documentToReactComponents(props.recipe.instructionsRt)
-
+    
     const nutrients = props.recipe.nutrients
     let firstHalfOfNutrients = {} 
     let secondHalfOfNutrients = {}
@@ -48,7 +48,11 @@ export default function Recipe(props){
                     <h1>{title}</h1>
                     <p>{description}</p>
                 </div>
+                  { props.recipe.resultImage ? 
+                  <img className={recipeStyle.recipeImg } src={ 'https:' + props.recipe.resultImage.fields.file.url}></img>
+                  :
                 <img className={recipeStyle.recipeImg } src="not-found.png"></img>
+                }
             </div>
       <div className={nutrientStyle.container}>
                 <h3>Ingredients</h3>
