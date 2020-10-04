@@ -54,11 +54,11 @@ export default function Recipe(props){
                 <img className={recipeStyle.recipeImg } src="not-found.png"></img>
                 }
             </div>
-      <div className={nutrientStyle.ingredientsContainer}>
+      <div className={recipeStyle.ingredientsContainer}>
                 <h3>Ingredients</h3>
                 {ingredientsDisplay}
             </div>
-      <div className={nutrientStyle.howToContainer}>
+      <div className={recipeStyle.howToContainer }>
                 <h3> How to</h3>
                 <p>
                     {instructionsDisplay}

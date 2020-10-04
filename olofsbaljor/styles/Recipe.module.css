@@ -35,7 +35,13 @@
     padding-right: 2%;
     margin: 0%;
     margin-top: 5%;
-    display: contents;
+}
+
+.ingredientsContainer h3{
+    padding-top: 3%;
+}
+.ingredientsContainer ul{
+    padding-bottom: 1%;
 }
 
 .howToContainer {
@@ -45,9 +51,13 @@
     padding-right: 2%;
     margin: 0%;
     margin-top: 5%;
-    display: contents;
 }
-
+.howToContainer  h3{
+    padding-top: 3%;
+}
+.howToContainer ul{
+    padding-bottom: 1%;
+}
 @media only screen and (max-width: 860px) {
     .container  {
     width: 98%;
