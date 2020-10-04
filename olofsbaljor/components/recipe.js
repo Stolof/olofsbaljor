@@ -42,7 +42,7 @@ export default function Recipe(props){
     }
 
     return (
-        <div id={title}>
+        <div className={recipeStyle.container} id={title}>
             <div className={recipeStyle.introduction}>
                 <div>
                     <h1>{title}</h1>
@@ -54,11 +54,11 @@ export default function Recipe(props){
                 <img className={recipeStyle.recipeImg } src="not-found.png"></img>
                 }
             </div>
-      <div className={nutrientStyle.container}>
+      <div className={nutrientStyle.ingredientsContainer}>
                 <h3>Ingredients</h3>
                 {ingredientsDisplay}
             </div>
-      <div className={nutrientStyle.container}>
+      <div className={nutrientStyle.howToContainer}>
                 <h3> How to</h3>
                 <p>
                     {instructionsDisplay}

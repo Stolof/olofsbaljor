@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import indexStyle from '../styles/Index.module.css'
-import Recipe from '../components/recipe.js'
+import Recipe from '../components/Recipe.js'
 import { getAllRecipes, getNutrientForAllRecipes } from '../lib/api'
 
 export default function Home(props) {
@@ -25,7 +25,7 @@ export default function Home(props) {
           r => (
               <li className={indexStyle.listItem} href={"#" + r.fields.title}>
                 <a href={"#" + r.fields.title}>
-                  {r.fields.title}
+                  <p>{r.fields.title}</p>
                   { r.fields.resultImage ? 
                   <img className={indexStyle.image} src={ 'https:' + r.fields.resultImage.fields.file.url}></img>
                   :
@@ -40,9 +40,7 @@ export default function Home(props) {
 
       { props.recipes.length > 0 ? props.recipes.map(
         r => (
-          <div className={indexStyle.container}>
           <Recipe recipe={r.fields}></Recipe>
-          </div>
         )
       ): null
       }
